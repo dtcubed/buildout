@@ -12,7 +12,6 @@ dnf_update_assumeyes () {
     echo "In: [$FUNCNAME]"
     $DNF_CMD update --assumeyes
 }
-
 ####################################################################
 install_ansible_core () {
 
@@ -20,7 +19,6 @@ install_ansible_core () {
     dnf_update_assumeyes
     $DNF_CMD -y install ansible-core
 }
-
 ####################################################################
 install_epel_things () {
 
@@ -30,7 +28,6 @@ install_epel_things () {
     $DNF_CMD -y install rcs
     $DNF_CMD repolist
 }
-
 ####################################################################
 # REF: https://www.postgresql.org/files/documentation/pdf/12/postgresql-12-US.pdf
 # REF: https://www.postgresql.org/download/linux/redhat/
@@ -49,7 +46,6 @@ install_postgres_12() {
     systemctl enable postgresql-12
     systemctl start postgresql-12
 }
-
 ####################################################################
 install_robotframework () {
 
@@ -67,11 +63,21 @@ install_robotframework () {
 }
 
 ####################################################################
+install_testrail_cli () {
+
+    echo "In: [$FUNCNAME]"
+    $DNF_CMD update --assumeyes
+    $DNF_CMD makecache --refresh
+    $DNF_CMD -y install python3-pip
+	$PIP3_CMD install trcli
+}
+####################################################################
 dnf_update_assumeyes
 install_ansible_core
 install_epel_things
 install_robotframework
 install_postgres_12
+install_testrail_cli
 
 exit
 
