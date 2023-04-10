@@ -20,6 +20,15 @@ install_ansible_core () {
     $DNF_CMD -y install ansible-core
 }
 ####################################################################
+install_allpairs () {
+
+    echo "In: [$FUNCNAME]"
+    $DNF_CMD update --assumeyes
+    $DNF_CMD makecache --refresh
+    $DNF_CMD -y install python3-pip
+	$PIP3_CMD install AllPairs 
+}
+####################################################################
 install_epel_things () {
 
     echo "In: [$FUNCNAME]"
@@ -73,6 +82,7 @@ install_testrail_cli () {
 }
 ####################################################################
 dnf_update_assumeyes
+install_allpairs
 install_ansible_core
 install_epel_things
 install_robotframework
